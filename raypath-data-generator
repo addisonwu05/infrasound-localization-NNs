@@ -18,4 +18,4 @@ for i in range(0, 17):
         pyautogui.typewrite("mv ./training_data/profs/example" + str(i) + ".raypaths.dat" + " ./raw_raypath_datasets/" + newFileName)
         pyautogui.press("enter")
 
-        #mv ./training_data/profs/example16.raypaths.dat example.dat
+        #This is what the command will look like mv ./training_data/profs/example16.raypaths.dat example.dat
