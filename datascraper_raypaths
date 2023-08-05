@@ -4,6 +4,7 @@ import pandas as pd
 
 #For each file in the datasets folder
 
+#I'll edit these paths when I get home and use my new laptop, screw google drive
 startPath = "/Users/addisonwu/aw2418@princeton.edu - Google Drive/My Drive/Clear Air Turbulence Localization Deep Learning/infraGA/raw_raypath_datasets"
 endPath = "/Users/addisonwu/aw2418@princeton.edu - Google Drive/My Drive/Clear Air Turbulence Localization Deep Learning/infraGA/scraped_raypath_datasets"
 
@@ -17,7 +18,7 @@ for filename in os.listdir(startPath):
     df = df.astype(float)
 
     #parse for relevant data, r and z must be within the microphone's pickup range
-    #Spherical distribution? Pythagorean inequality
+    #Spherical distribution? Pythagorean inequality bounds
     drop_row_list = []
     for i in range(0, len(df)):
         if (microphone_r - float(df["# r [km]"][i]))**2 + (microphone_alt - float(df["z [km]"][i]))**2 > 2.5**2:  #microphone with capture radius of 2.5 km
