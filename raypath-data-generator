@@ -1,0 +1,20 @@
+import pyautogui
+import time
+import numpy as np
+
+time.sleep(10)
+print(pyautogui.position())
+
+#First, select the atmospheric profile code
+for i in range(0, 17):
+    atmo = "example" + str(i) + ".met"
+    for j in np.arange(0, 20, 0.05):
+        #Then, run the command
+        pyautogui.typewrite("./bin/infraga-2d -prop ./training_data/profs/" + atmo + " src_alt=" + str(j) + " incl_min=-45")
+        pyautogui.press("enter")
+        #Rename and move the file
+        newFileName = "Atmo" + str(i) + "_Alt" + str(j) + ".raypaths.dat"
+        pyautogui.typewrite("mv ./training_data/profs/example" + str(i) + ".raypaths.dat" + " ./raw_raypath_datasets/" + newFileName)
+        pyautogui.press("enter")
+
+        #mv ./training_data/profs/example16.raypaths.dat example.dat
