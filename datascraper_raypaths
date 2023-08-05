@@ -27,8 +27,8 @@ for filename in os.listdir(startPath):
 
     #now we need to adjust the time column so that it's scaled down (we can only use what we know)
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
-    #drop irrelevant columns
     df["time [s]"] = df["time [s]"] - min(df["time [s]"])
+    #drop irrelevant columns
     df = df.drop(columns=["r [km]", "z [km]", "trans. coeff. [dB]"])
 
     #write and save to a new file name
