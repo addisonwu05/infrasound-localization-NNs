@@ -8,7 +8,7 @@ endPath = "./scraped_raypaths"
 for filename in os.listdir(startPath):
     #Set the altitude of the microphone
     microphone_alt = np.around(np.random.uniform(3, 20), decimals=2)
-    microphone_r = np.around(np.random.uniform(10, 900), decimals=3)
+    microphone_r = np.around(np.random.uniform(10, 900), decimals=2)
 
     #Read datafile and ensure it is float file
     df = pd.read_table(os.path.join(startPath, filename), dtype=float)
