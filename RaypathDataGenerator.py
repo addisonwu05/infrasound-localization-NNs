@@ -20,4 +20,3 @@ for i in range(0, 17):
         newFileName = "Atmo" + str(i) + "_Alt" + str(j) + ".raypaths.dat"
         pyautogui.typewrite("mv ./infraGA/training_data/profs/example" + str(i) + ".raypaths.dat" + " ./raw_raypaths/" + newFileName)
         pyautogui.press("enter")
-
