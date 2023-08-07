@@ -1,3 +1,3 @@
 import pyautogui 
 
-pyautogui.typewrite("Hello world!")
+print("hello world!")
