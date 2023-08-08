@@ -22,13 +22,13 @@ for filename in os.listdir(startPath):
             drop_row_list.append(i) # data is out of range of microphone discard it
     df = df.drop(labels = drop_row_list, axis = 0) #discard said rows
 
-    #now we need to adjust the time column so that it's scaled down (we can only use what we know)
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
-    #drop irrelevant columns
     df["time [s]"] = df["time [s]"] - min(df["time [s]"])
+
+    #drop irrelevant columns
     df = df.drop(columns=["r [km]", "z [km]", "trans. coeff. [dB]"])
 
-    #write and save to a new file name
+    #new file name
     newfile = f"MicAlt_{microphone_alt}_MicDistance_{microphone_r}_{filename}"
 
     #save to the scraped folder as a TSV (tab CSV)
