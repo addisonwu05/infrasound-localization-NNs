@@ -2,8 +2,8 @@ import os
 import numpy as np
 import pandas as pd
 
-startPath = "./raw_raypaths"
-endPath = "./scraped_raypaths"
+startPath = "./CAT_Infrasound_Data/raw_raypaths"
+endPath = "./CAT_Infrasound_Data/scraped_raypaths"
 
 for filename in os.listdir(startPath):
     #Set the altitude of the microphone
