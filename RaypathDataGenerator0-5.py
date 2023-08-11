@@ -2,10 +2,10 @@ import os
 import numpy as np
 
 #First, select the atmospheric profile
-for i in range(1, 2):
+for i in range(0, 6):
     atmo = "example" + str(i) + ".met"
     #Then, set an initial source altitude
-    for j in np.arange(19.60, 20, 0.05):
+    for j in np.arange(2, 20, 0.05):
         #ROUND J TO 2 DECIMAL PLACES SO I DON'T GET BAD LONG FLOATING POINT ARITHMETIC
         j = np.round(j, decimals=2)
         #Then, run the command

@@ -24,9 +24,9 @@ for filename in os.listdir(startPath):
 
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
     df["time [s]"] = df["time [s]"] - min(df["time [s]"])
-
+    df["absorption [dB]"] = np.absolute(df["absorption [dB]"])
     #drop irrelevant columns
-    df = df.drop(columns=["r [km]", "z [km]", "trans. coeff. [dB]"])
+    df = df.drop(columns=["# r [km]", "z [km]", "trans. coeff. [dB]"])
 
     #new file name
     newfile = f"MicAlt_{microphone_alt}_MicDistance_{microphone_r}_{filename}"
@@ -34,3 +34,4 @@ for filename in os.listdir(startPath):
     #save to the scraped folder as a TSV (tab CSV)
     output_file_path = os.path.join(endPath, newfile)
     df.to_csv(output_file_path, sep='\t', index=False, header=False)
+    break;
