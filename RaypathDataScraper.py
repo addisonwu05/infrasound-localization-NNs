@@ -24,7 +24,6 @@ for filename in os.listdir(startPath):
 
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
     df["time [s]"] = df["time [s]"] - min(df["time [s]"])
-    df["absorption [dB]"] = np.absolute(df["absorption [dB]"])
     #drop irrelevant columns
     df = df.drop(columns=["# r [km]", "z [km]", "trans. coeff. [dB]"])
 
