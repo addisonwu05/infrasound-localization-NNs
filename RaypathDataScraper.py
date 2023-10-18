@@ -27,8 +27,13 @@ for filename in os.listdir(startPath):
     #drop irrelevant columns
     df = df.drop(columns=["# r [km]", "z [km]", "trans. coeff. [dB]"])
 
+    #get the source altitude (raw dataset)
+
+    match = re.search(r'Alt(\d+\.\d+)', file_name)
+    altitude = match.group(1)
+        
     #new file name
-    newfile = f"MicAlt_{microphone_alt}_MicDistance_{microphone_r}_{filename}"
+    newfile = f"MicAlt_{microphone_alt}_MicDistance_{microphone_r}_{filename}_SrcAlt_{altitude}"
 
     #save to the scraped folder as a TSV (tab CSV)
     output_file_path = os.path.join(endPath, newfile)
