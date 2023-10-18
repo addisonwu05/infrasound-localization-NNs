@@ -28,8 +28,7 @@ for filename in os.listdir(startPath):
     df = df.drop(columns=["# r [km]", "z [km]", "trans. coeff. [dB]"])
 
     #get the source altitude (raw dataset)
-
-    match = re.search(r'Alt(\d+\.\d+)', file_name)
+    match = re.search(r'Alt(\d+\.\d+)', filename)
     altitude = match.group(1)
         
     #new file name
