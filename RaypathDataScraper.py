@@ -1,4 +1,5 @@
 import os
+import re
 import numpy as np
 import pandas as pd
 
@@ -37,4 +38,4 @@ for filename in os.listdir(startPath):
     #save to the scraped folder as a TSV (tab CSV)
     output_file_path = os.path.join(endPath, newfile)
     df.to_csv(output_file_path, sep='\t', index=False, header=False)
-    break;
+    break

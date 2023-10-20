@@ -20,7 +20,7 @@ for filename in os.listdir(startPath):
     cumulativePropagationDistance = 0
     for line in df.iterrows():
         if line == 0:
-            df.loc[line, 'Propgation Distance (km)'] = 0    
+            df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance    
         if df.isnull().loc[line]:
             cumulativePropagationDistance = 0
             continue
@@ -33,4 +33,8 @@ for filename in os.listdir(startPath):
         df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance
         break #remove when sure code works
 
+    #Remove blank lines
+    df = df.dropna(axis=1)
+
     #Now deal with converting attenuation to SPL using formula in ISO 1993-1
+    
