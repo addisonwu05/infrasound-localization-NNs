@@ -15,8 +15,7 @@ for filename in os.listdir(startPath):
     df = df.astype(float)
     df['Propagation Distance (km)'] = df.Series([], dtype='float')
     
-    #Add measurements for cumulative propgation distance for each ray
-    #see "s" in ISO document 1993-1
+    #Add measurements for cumulative propgation distance for each ray (see "s" in ISO document 1993-1)
     cumulativePropagationDistance = 0
     for line in df.iterrows():
         if line == 0:
