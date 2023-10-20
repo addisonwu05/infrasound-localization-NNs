@@ -3,6 +3,7 @@
 
 import os
 import pandas as pd
+import math
 
 startPath = "./CAT_Infrasound_Data/raw_raypaths"
 endPath = ".CAT_Infrasound_Data/raw_raypaths_SPL"
@@ -18,4 +19,4 @@ for filename in os.listdir(startPath):
     #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
     for line in df.iterrows():
         initialSPA = 1
-        df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(df['absorption [dB]'][line]/20))
+        df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(math.abs(df['absorption [dB]'][line])/20))
