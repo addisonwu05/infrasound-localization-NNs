@@ -34,5 +34,3 @@ for filename in os.listdir(startPath):
         break #remove when sure code works
 
     #Now deal with converting attenuation to SPL using formula in ISO 1993-1
-
-    
