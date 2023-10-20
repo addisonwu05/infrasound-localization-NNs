@@ -11,10 +11,12 @@ endPath = ".CAT_Infrasound_Data/raw_raypaths_SPL"
 
 for filename in os.listdir(startPath):
     #Read datafile and ensure it is float file
-    df = pd.read_table(os.path.join(startPath, filename), dtype=float)
+    df = pd.read_table(os.path.join(startPath, filename), dtype=float, skip_blank_lines=False)
     df = df.astype(float)
     df['Propagation Distance (km)'] = df.Series([], dtype='float')
     
+    #Add measurements for cumulative propgation distance for each ray
+    #see "s" in ISO document 1993-1
     cumulativePropagationDistance = 0
     for line in df.iterrows():
         if line == 0:
@@ -30,3 +32,7 @@ for filename in os.listdir(startPath):
                                                        + (df['z [km]'][line] - df['z [km]'][line-1])**2)
         df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance
         break #remove when sure code works
+
+    #Now deal with converting attenuation to SPL using formula in ISO 1993-1
+
+    
