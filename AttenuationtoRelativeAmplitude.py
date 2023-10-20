@@ -2,40 +2,20 @@
 #will then hopefully be used to make a FFT vector
 
 import os
-import numpy as np
 import pandas as pd
-import math
 
 startPath = "./CAT_Infrasound_Data/raw_raypaths"
 endPath = ".CAT_Infrasound_Data/raw_raypaths_SPL"
 
 for filename in os.listdir(startPath):
     #Read datafile and ensure it is float file
-    df = pd.read_table(os.path.join(startPath, filename), dtype=float, skip_blank_lines=False)
+    df = pd.read_table(os.path.join(startPath, filename), dtype=float)
     df = df.astype(float)
-    df['Propagation Distance (km)'] = df.Series([], dtype='float')
+
+    #Add appropriate columns
+    df['Sound Pressure Amplitude (Pa)'] = df.Series([], dtype='float')
     
-    #Add measurements for cumulative propgation distance for each ray (see "s" in ISO document 1993-1)
-    cumulativePropagationDistance = 0
+    #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
     for line in df.iterrows():
-        if line == 0:
-            df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance    
-        if df.isnull().loc[line]:
-            cumulativePropagationDistance = 0
-            continue
-        if df.isnull().loc[line - 1]:
-            df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance
-            continue
-        else:
-            cumulativePropagationDistance =+ math.sqrt((df['# r [km]'][line] - df['# r [km]'][line-1])**2
-                                                       + (df['z [km]'][line] - df['z [km]'][line-1])**2)
-        df.loc[line, 'Propgation Distance (km)'] = cumulativePropagationDistance
-        break #remove when sure code works
-
-    #Remove blank lines
-    df = df.dropna(axis=1)
-
-    
-
-    #Now deal with converting attenuation to SPL using formula in ISO 1993-1
-    
+        initialSPA = 1
+        df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(df['absorption [dB]'][line]/20))
