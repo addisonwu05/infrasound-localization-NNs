@@ -13,9 +13,8 @@ for filename in os.listdir(startPath):
     df = pd.read_table(os.path.join(startPath, filename), dtype=float)
     df = df.astype(float)
 
-    #Add appropriate columns
-    newColumnName = "Sound Pressure Amplitude (Pa)"
-    df = df.assign(newColumnName = 0)
+    #Add appropriate column
+    df['Sound Pressure Amplitude (Pa)'] = 0
     
     #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
     for i in range(0, len(df)):
