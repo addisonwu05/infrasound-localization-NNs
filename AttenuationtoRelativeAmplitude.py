@@ -20,3 +20,5 @@ for filename in os.listdir(startPath):
     for line in df.iterrows():
         initialSPA = 1
         df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(math.abs(df['absorption [dB]'][line])/20))
+    output_file_path = os.path.join(endPath, filename)
+    df.to_csv(output_file_path, sep='\t', index=False, header=False)
