@@ -18,9 +18,8 @@ for filename in os.listdir(startPath):
     df = df.assign(newColumnName = 0)
     
     #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
-    for line in df.iterrows():
-        print(line)
+    for i in range(0, len(df)):
         initialSPA = 1
-        df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(abs(df['absorption [dB]'][line])/20))
+        df['Sound Pressure Amplitude (Pa)'][i] = initialSPA/(10**(abs(df['absorption [dB]'][i])/20))
     output_file_path = os.path.join(endPath, filename)
     df.to_csv(output_file_path, sep='\t', index=False, header=False)
