@@ -14,7 +14,8 @@ for filename in os.listdir(startPath):
     df = df.astype(float)
 
     #Add appropriate columns
-    df['Sound Pressure Amplitude (Pa)'] = df.Series([], dtype='float')
+    newColumnName = "Sound Pressure Amplitude"
+    df = df.assign(newColumnName = 0)
     
     #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
     for line in df.iterrows():
