@@ -19,6 +19,7 @@ for filename in os.listdir(startPath):
     
     #Use formula 2 in ISO-9613-1-1933 to convert to sound pressure values
     for line in df.iterrows():
+        print(line)
         initialSPA = 1
         df['Sound Pressure Amplitude (Pa)'][line] = initialSPA/(10**(abs(df['absorption [dB]'][line])/20))
     output_file_path = os.path.join(endPath, filename)
