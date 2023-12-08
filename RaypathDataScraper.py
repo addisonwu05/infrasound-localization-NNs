@@ -22,7 +22,8 @@ for filename in os.listdir(startPath):
         if (microphone_r - float(df['# r [km]'][i]))**2 + (microphone_alt - float(df['z [km]'][i]))**2 > 2.5**2:  #microphone with capture radius of 2.5 km
             drop_row_list.append(i) # data is out of range of microphone discard it
     df = df.drop(labels = drop_row_list, axis = 0) #discard said rows
-
+    if len(df) == 0:
+        continue
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
     df['time [s]'] = df['time [s]'] - min(df['time [s]'])
     #drop irrelevant columns
