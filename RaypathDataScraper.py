@@ -3,7 +3,7 @@ import re
 import numpy as np
 import pandas as pd
 
-startPath = "./CAT_Infrasound_Data/raw_raypaths"
+startPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
 endPath = "./CAT_Infrasound_Data/scraped_raypaths"
 
 for filename in os.listdir(startPath):
