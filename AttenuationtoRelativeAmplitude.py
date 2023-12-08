@@ -3,7 +3,6 @@
 
 import os
 import pandas as pd
-import math
 
 startPath = "./CAT_Infrasound_Data/raw_raypaths"
 endPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
@@ -21,4 +20,4 @@ for filename in os.listdir(startPath):
         initialSPA = 1
         df['Sound Pressure Amplitude (Pa)'][i] = initialSPA/(10**(abs(df['absorption [dB]'][i])/20))
     output_file_path = os.path.join(endPath, filename)
-    df.to_csv(output_file_path, sep='\t', index=False, header=False)
+    df.to_csv(output_file_path, sep='\t', index=False)
