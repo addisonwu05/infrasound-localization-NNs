@@ -19,14 +19,14 @@ for filename in os.listdir(startPath):
     #Spherical distribution? Pythagorean inequality
     drop_row_list = []
     for i in range(0, len(df)):
-        if (microphone_r - float(df[0][i]))**2 + (microphone_alt - float(df[1][i]))**2 > 2.5**2:  #microphone with capture radius of 2.5 km
+        if (microphone_r - float(df['r [km]'][i]))**2 + (microphone_alt - float(df['z [km]'][i]))**2 > 2.5**2:  #microphone with capture radius of 2.5 km
             drop_row_list.append(i) # data is out of range of microphone discard it
     df = df.drop(labels = drop_row_list, axis = 0) #discard said rows
 
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
-    df[4] = df[4] - min(df[4])
+    df['time [s]'] = df['time [s]'] - min(df['time [s]'])
     #drop irrelevant columns
-    df = df.drop(columns=[1, 2, 3, 4])
+    df = df.drop(columns=['r [km]', 'z [km]', 'trans. coeff. [dB]', 'absorption [dB]'])
 
     #get the source altitude (raw dataset)
     match = re.search(r'Alt(\d+\.\d+)', filename)
