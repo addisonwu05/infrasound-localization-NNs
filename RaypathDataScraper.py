@@ -62,7 +62,7 @@ for filename in os.listdir(startPath):
 
     #create subdirectory for these two files
     directoryName = f"Atmo_{atmoNumber}_SrcAlt_{altitude}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
-    os.makedirs(directoryName)
+    os.makedirs(os.path.join(endPath, directoryName))
 
     df.to_csv(os.path.join(directoryName, newfileRaypath), index=False)
     dfAtmo.to_csv(os.path.join(directoryName, newfileAtmo), index=False)
