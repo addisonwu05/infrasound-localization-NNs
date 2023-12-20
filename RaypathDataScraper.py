@@ -36,12 +36,10 @@ for filename in os.listdir(startPath):
     #get the corresponding atmospheric file number
     atmo = re.search(r'Atmo(\d{1,2})_', filename)
     atmoNumber = atmo.group(1)
-    print(atmoNumber)
 
     #read the atmospheric file
     dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), sep='\s+', comment='#', header = None)
     dfAtmo = dfAtmo.astype(float)
-    print(dfAtmo[0][0])
 
     #parse for the atmospheric measurements that are within range of microphone
     atmo_drop_row_list = []
@@ -67,10 +65,3 @@ for filename in os.listdir(startPath):
 
     df.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileRaypath), index=False)
     dfAtmo.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileAtmo), index=False)
-
-    break
-
-
-
-
-    
