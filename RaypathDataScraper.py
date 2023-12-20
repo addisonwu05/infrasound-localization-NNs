@@ -36,7 +36,7 @@ for filename in os.listdir(startPath):
     #get the corresponding atmospheric file number
     atmo = re.search(r'Atmo(\d{1,2})_', filename)
     atmoNumber = atmo.group(1)
-
+    print(atmoNumber)
     #read the atmospheric file
     dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), comment='#', sep='\s+')
     dfAtmo = dfAtmo.astype(float)
