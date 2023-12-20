@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 
 startPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
-endPath = "./CAT_Infrasound_Data/scraped_raypaths"
+atmoPath = "./CAT_Infrasound_Data/atmo_files"
+endPath = "./CAT_Infrasound_Data/scraped_data"
 
 for filename in os.listdir(startPath):
     #Set the altitude of the microphone
@@ -28,14 +29,44 @@ for filename in os.listdir(startPath):
     df['time [s]'] = df['time [s]'] - min(df['time [s]'])
     #drop irrelevant columns
     df = df.drop(columns=['# r [km]', 'z [km]', 'trans. coeff. [dB]', 'absorption [dB]'])
+        
+    #new file name for raypathData
+    newfileRaypath = f"{filename}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
+
+    #get the corresponding atmospheric file number
+    atmo = re.search(r'Atmo(\d{1,2})_', filename)
+    atmoNumber = atmo.group(1)
+
+    #read the atmospheric file
+    dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), dtype=float)
+    dfAtmo = dfAtmo.astype(float)
+
+    #parse for the atmospheric measurements that are within range of microphone
+    atmo_drop_row_list = []
+    for i in range(0, len(dfAtmo)):
+        if (abs(microphone_alt - dfAtmo[0][i]) > 2.5):
+            atmo_drop_row_list.append(i)
+    dfAtmo = dfAtmo.drop(labels = atmo_drop_row_list, axis = 0)
+    dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
+    if len(dfAtmo) == 0:
+        continue
+
+    #new file name for scraped atmo data
+    newfileAtmo = f"Atmo_{atmoNumber}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
 
     #get the source altitude (raw dataset)
     match = re.search(r'Alt(\d+\.\d+)', filename)
     altitude = match.group(1)
-        
-    #new file name
-    newfile = f"{filename}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
 
-    #save to the scraped folder as a TSV (tab CSV)
-    output_file_path = os.path.join(endPath, newfile)
-    df.to_csv(output_file_path, sep='\t', index=False)
+    #create subdirectory for these two files
+    directoryName = f"Atmo_{atmoNumber}_SrcAlt_{altitude}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
+    os.makedirs(directoryName)
+
+    df.to_csv(os.path.join(directoryName, newfileRaypath + '.csv'), index=False)
+    dfAtmo.to_csv(os.path.join(directoryName, newfileAtmo + '.csv'), index=False)
+
+
+
+
+
+    
