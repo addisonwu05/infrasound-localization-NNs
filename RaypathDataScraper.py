@@ -37,14 +37,17 @@ for filename in os.listdir(startPath):
     atmo = re.search(r'Atmo(\d{1,2})_', filename)
     atmoNumber = atmo.group(1)
     print(atmoNumber)
+
     #read the atmospheric file
-    dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), comment='#', sep='\s+')
+    dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), sep='\s+', comment='#', header = None)
+    dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
     dfAtmo = dfAtmo.astype(float)
-    print(dfAtmo.iloc[0])
+    print(dfAtmo[0][0])
+
     #parse for the atmospheric measurements that are within range of microphone
     atmo_drop_row_list = []
     for i in range(0, len(dfAtmo)):
-        if (abs(microphone_alt - dfAtmo[0][i]) > 2.5):
+        if (abs(microphone_alt - dfAtmo[1][i]) > 2.5):
             atmo_drop_row_list.append(i)
     dfAtmo = dfAtmo.drop(labels = atmo_drop_row_list, axis = 0)
     dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
