@@ -43,12 +43,10 @@ for filename in os.listdir(startPath):
     dfAtmo = dfAtmo.astype(float)
     print(dfAtmo[0][0])
 
-    break
-
     #parse for the atmospheric measurements that are within range of microphone
     atmo_drop_row_list = []
     for i in range(0, len(dfAtmo)):
-        if (abs(microphone_alt - dfAtmo[1][i]) > 2.5):
+        if (abs(microphone_alt - dfAtmo[0][i]) > 2.5):
             atmo_drop_row_list.append(i)
     dfAtmo = dfAtmo.drop(labels = atmo_drop_row_list, axis = 0)
     dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
@@ -69,6 +67,7 @@ for filename in os.listdir(startPath):
     df.to_csv(os.path.join(directoryName, newfileRaypath + '.csv'), index=False)
     dfAtmo.to_csv(os.path.join(directoryName, newfileAtmo + '.csv'), index=False)
 
+    break
 
 
 
