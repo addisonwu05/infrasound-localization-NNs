@@ -40,9 +40,10 @@ for filename in os.listdir(startPath):
 
     #read the atmospheric file
     dfAtmo = pd.read_table(os.path.join(atmoPath, "example" + atmoNumber + ".met"), sep='\s+', comment='#', header = None)
-    dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
     dfAtmo = dfAtmo.astype(float)
     print(dfAtmo[0][0])
+
+    break
 
     #parse for the atmospheric measurements that are within range of microphone
     atmo_drop_row_list = []
