@@ -34,7 +34,7 @@ for filename in os.listdir(startPath):
     altitude = match.group(1)
         
     #new file name
-    newfile = f"MicAlt_{microphone_alt}_MicDistance_{microphone_r}_SrcAlt_{altitude}_{filename}"
+    newfile = f"{filename}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
 
     #save to the scraped folder as a TSV (tab CSV)
     output_file_path = os.path.join(endPath, newfile)
