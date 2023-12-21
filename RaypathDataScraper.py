@@ -64,5 +64,5 @@ for filename in os.listdir(startPath):
     
     os.makedirs(os.path.join(endPath, directoryName))
 
-    df.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileRaypath), sep = ' ', index=False)
-    dfAtmo.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileAtmo), sep = ' ', index=False)
+    df.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileRaypath), index=False)
+    dfAtmo.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileAtmo), index=False)
