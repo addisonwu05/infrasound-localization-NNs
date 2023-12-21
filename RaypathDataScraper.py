@@ -7,6 +7,8 @@ startPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
 atmoPath = "./CAT_Infrasound_Data/atmo_files"
 endPath = "./CAT_Infrasound_Data/scraped_data"
 
+captureRadius = 2.5
+
 for filename in os.listdir(startPath):
     #Set the altitude of the microphone
     microphone_alt = np.around(np.random.uniform(3, 20), decimals=2)
@@ -24,7 +26,7 @@ for filename in os.listdir(startPath):
     #Spherical distribution? Pythagorean inequality
     drop_row_list = []
     for i in range(0, len(df)):
-        if (microphone_r - float(df['# r [km]'][i]))**2 + (microphone_alt - float(df['z [km]'][i]))**2 > 2.5**2:  #microphone with capture radius of 2.5 km
+        if (microphone_r - float(df['# r [km]'][i]))**2 + (microphone_alt - float(df['z [km]'][i]))**2 > captureRadius**2:  
             drop_row_list.append(i) # data is out of range of microphone discard it
     df = df.drop(labels = drop_row_list, axis = 0) #discard said rows
     if len(df) == 0:
@@ -46,7 +48,7 @@ for filename in os.listdir(startPath):
     #parse for the atmospheric measurements that are within range of microphone
     atmo_drop_row_list = []
     for i in range(0, len(dfAtmo)):
-        if (abs(microphone_alt - dfAtmo[0][i]) > 2.5):
+        if (abs(microphone_alt - dfAtmo[0][i]) > captureRadius):
             atmo_drop_row_list.append(i)
     dfAtmo = dfAtmo.drop(labels = atmo_drop_row_list, axis = 0)
     dfAtmo.drop(dfAtmo.columns[0], axis=1, inplace=True)
