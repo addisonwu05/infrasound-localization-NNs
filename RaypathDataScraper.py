@@ -16,6 +16,10 @@ for filename in os.listdir(startPath):
     df = pd.read_table(os.path.join(startPath, filename), dtype=float)
     df = df.astype(float)
 
+    #get the source altitude (raw dataset)
+    match = re.search(r'Alt(\d+\.\d+)', filename)
+    altitude = match.group(1)
+
     #parse for relevant data, r and z must be within the microphone's pickup range
     #Spherical distribution? Pythagorean inequality
     drop_row_list = []
@@ -25,13 +29,11 @@ for filename in os.listdir(startPath):
     df = df.drop(labels = drop_row_list, axis = 0) #discard said rows
     if len(df) == 0:
         continue
+
     #the times are set relative to when the microphone registers, not how long it takes after emitted from source
     df['time [s]'] = df['time [s]'] - min(df['time [s]'])
     #drop irrelevant columns
     df = df.drop(columns=['# r [km]', 'z [km]', 'trans. coeff. [dB]', 'absorption [dB]'])
-        
-    #new file name for raypathData
-    newfileRaypath = f"{filename}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
 
     #get the corresponding atmospheric file number
     atmo = re.search(r'Atmo(\d{1,2})_', filename)
@@ -51,17 +53,16 @@ for filename in os.listdir(startPath):
     if len(dfAtmo) == 0:
         continue
 
-    #new file name for scraped atmo data
-    newfileAtmo = f"Atmo_{atmoNumber}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
+    #new file name for raypathData
+    newfileRaypath = f"ScrapedRaypath_SrcAlt_{altitude}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
 
-    #get the source altitude (raw dataset)
-    match = re.search(r'Alt(\d+\.\d+)', filename)
-    altitude = match.group(1)
+     #new file name for scraped atmo data
+    newfileAtmo = f"ScrapedAtmo_{atmoNumber}_MicAlt_{microphone_alt}"
 
     #create subdirectory for these two files
     directoryName = f"Atmo_{atmoNumber}_SrcAlt_{altitude}_MicAlt_{microphone_alt}_MicDistance_{microphone_r}"
     
     os.makedirs(os.path.join(endPath, directoryName))
 
-    df.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileRaypath), index=False)
-    dfAtmo.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileAtmo), index=False)
+    df.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileRaypath), sep = ' ', index=False)
+    dfAtmo.to_csv(os.path.join(os.path.join(endPath, directoryName), newfileAtmo), sep = ' ', index=False)
