@@ -9,7 +9,7 @@ startPath = "./CAT_Infrasound_Data/scraped_data"
 for subdir in os.listdir(startPath):
 
     full_subdir_path = os.path.join(startPath, subdir)
-
+    print(full_subdir_path)
     #Find the file containing in-range atmospheric data
     file_path = glob.glob(os.path.join(full_subdir_path, "ScrapedAtmo*"))[0]
     print(file_path)
