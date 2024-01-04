@@ -56,6 +56,6 @@ for subdir in os.listdir(startPath):
 
     # Save DataFrame as CSV in the current subdir
     save_path = os.path.join(full_subdir_path, fileName)
-    stats_df.to_csv(save_path, index=False, heading=False)
+    stats_df.to_csv(save_path, index=False, header=False)
     
     break #remove when confirmed
