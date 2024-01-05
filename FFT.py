@@ -31,6 +31,9 @@ for subdir in os.listdir(startPath):
 #Interpolate, zero-pad, FFT
 for subdir in os.listdir(startPath):
     
+    if subdir == ".DS_Store":
+        continue
+
     print(subdir)
     full_subdir_path = os.path.join(startPath, subdir)
 
