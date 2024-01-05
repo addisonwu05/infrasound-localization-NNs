@@ -62,5 +62,3 @@ for subdir in os.listdir(startPath):
     filename = f"fft_{subdir}"
 
     fft_df.to_csv(os.path.join(full_subdir_path, filename), index=False)
-    
-    break #remove when deployedd
