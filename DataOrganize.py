@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import numpy as np
 import re
 import glob
 import json
@@ -33,10 +32,10 @@ for subdir in os.listdir(startPath):
 
     #Get the atmostats and fft files, convert their content to np arrays
     atmoFile = glob.glob(os.path.join(full_subdir_path, "AtmoStats*"))[0]
-    dfAtmo = np.array(pd.read_csv(atmoFile))
+    dfAtmo = pd.read_csv(atmoFile).values.tolist()
 
     fftFile = glob.glob(os.path.join(full_subdir_path, "fft*"))[0]
-    dfFFT = np.array(pd.read_csv(fftFile))
+    dfFFT = pd.read_csv(fftFile).values.tolist()
 
     dataset.append([dfAtmo, dfFFT])
 
