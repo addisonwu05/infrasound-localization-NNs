@@ -29,15 +29,18 @@ for subdir in os.listdir(startPath):
     dist = micDist.group(1)
 
     labelset.append([alt, dist])
+    print([alt, dist])
 
     #Get the atmostats and fft files, convert their content to np arrays
     atmoFile = glob.glob(os.path.join(full_subdir_path, "AtmoStats*"))[0]
-    dfAtmo = pd.read_csv(atmoFile, header = None).values.tolist()
-
+    dfAtmo = (pd.read_csv(atmoFile, header = None)).values.tolist()[0]
+    
     fftFile = glob.glob(os.path.join(full_subdir_path, "fft*"))[0]
-    dfFFT = pd.read_csv(fftFile).values.tolist()
+    dfFFT = (pd.read_csv(fftFile)).values.tolist()
+    dfFFT = [item for sublist in dfFFT for item in sublist]
 
     dataset.append([dfAtmo, dfFFT])
+    print(dataset)
 
 #Save labelset and dataset as json files
 with open(input_path, 'w') as f:
