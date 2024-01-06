@@ -15,6 +15,9 @@ labels_path = "./CAT_Infrasound_Data/model_dataset1/labels.json"
 
 for subdir in os.listdir(startPath):
 
+    if subdir == ".DS_Store":
+        continue
+
     print(subdir)
 
     full_subdir_path = os.path.join(startPath, subdir)
