@@ -15,6 +15,8 @@ labels_path = "./CAT_Infrasound_Data/model_dataset1/labels.json"
 
 for subdir in os.listdir(startPath):
 
+    print(subdir)
+
     full_subdir_path = os.path.join(startPath, subdir)
 
     #Get altitude and distance (from microphone) of infrasound source
