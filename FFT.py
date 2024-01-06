@@ -48,7 +48,7 @@ for subdir in os.listdir(startPath):
     time = np.array(df.iloc[:, 0])
     pressure = np.array(df.iloc[:, 1])
     
-    numPoints = 2 ** 14 #Must be power of 2 (pref even)
+    numPoints = 2 ** 12 #Must be power of 2 (pref even)
     
     f = interp1d(time, pressure, kind='linear', bounds_error=False, fill_value=(pressure[0], 0)) #Zero pads after the last entry
     time_uniform = np.linspace(0, maxTime, num=numPoints)
