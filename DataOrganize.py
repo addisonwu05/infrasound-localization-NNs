@@ -22,8 +22,8 @@ for subdir in os.listdir(startPath):
     full_subdir_path = os.path.join(startPath, subdir)
 
     #Get altitude and distance (from microphone) of infrasound source
-    micAlt = re.search(r'MicAlt_(\d+\.\d+)_', subdir)
-    alt = micAlt.group(1)
+    srcAlt = re.search(r'SrcAlt_(\d+\.\d+)_', subdir)
+    alt = srcAlt.group(1)
     
     micDist = re.search(r'MicDistance_(\d+\.\d+)', subdir)
     dist = micDist.group(1)
