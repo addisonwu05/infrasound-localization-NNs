@@ -32,7 +32,7 @@ for subdir in os.listdir(startPath):
 
     #Get the atmostats and fft files, convert their content to np arrays
     atmoFile = glob.glob(os.path.join(full_subdir_path, "AtmoStats*"))[0]
-    dfAtmo = pd.read_csv(atmoFile).values.tolist()
+    dfAtmo = pd.read_csv(atmoFile, header = None).values.tolist()
 
     fftFile = glob.glob(os.path.join(full_subdir_path, "fft*"))[0]
     dfFFT = pd.read_csv(fftFile).values.tolist()
