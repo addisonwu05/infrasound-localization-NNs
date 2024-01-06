@@ -29,7 +29,6 @@ for subdir in os.listdir(startPath):
     dist = micDist.group(1)
 
     labelset.append([alt, dist])
-    print([alt, dist])
 
     #Get the atmostats and fft files
     atmoFile = glob.glob(os.path.join(full_subdir_path, "AtmoStats*"))[0]
@@ -40,7 +39,6 @@ for subdir in os.listdir(startPath):
     dfFFT = [item for sublist in dfFFT for item in sublist]
 
     dataset.append([dfAtmo, dfFFT])
-    print(dataset)
 
 #Save labelset and dataset as json files
 with open(input_path, 'w') as f:
