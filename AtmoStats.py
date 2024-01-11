@@ -52,6 +52,8 @@ for subdir in os.listdir(startPath):
     micAlt = re.search(r'MicAlt_(\d+\.\d+)_', file_path)
     alt = micAlt.group(1)
 
+    atmoStats.append(alt)
+
     fileName = f"AtmoStats_Atmo_{atmoNumber}_MicAlt_{alt}"
 
     # Convert atmoStats to DataFrame
