@@ -9,8 +9,8 @@ labelset = []
 
 startPath = "./CAT_Infrasound_Data/scraped_data"
 
-input_path = "./CAT_Infrasound_Data/model_dataset2/input.json"
-labels_path = "./CAT_Infrasound_Data/model_dataset2/labels.json"
+input_path = "./CAT_Infrasound_Data/model_dataset3/input.json"
+labels_path = "./CAT_Infrasound_Data/model_dataset3/labels.json"
 
 for subdir in os.listdir(startPath):
 
