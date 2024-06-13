@@ -6,7 +6,7 @@ import numpy as np
 from scipy.interpolate import interp1d
 import pandas as pd
 
-startPath = "./CAT_Infrasound_Data/scraped_data"
+startPath = "./Infrasound_Data/scraped_data"
 maxTime = 0
 
 #Get longest time duration of any file

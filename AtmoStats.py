@@ -4,7 +4,7 @@ import re
 import numpy as np
 import pandas as pd
 
-startPath = "./CAT_Infrasound_Data/scraped_data"
+startPath = "./Infrasound_Data/scraped_data"
 
 for subdir in os.listdir(startPath):
 

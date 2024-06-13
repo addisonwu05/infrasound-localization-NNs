@@ -3,9 +3,9 @@ import re
 import numpy as np
 import pandas as pd
 
-startPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
-atmoPath = "./CAT_Infrasound_Data/atmo_files"
-endPath = "./CAT_Infrasound_Data/scraped_data"
+startPath = "./Infrasound_Data/raw_raypaths_SPL"
+atmoPath = "./Infrasound_Data/atmo_files"
+endPath = "./Infrasound_Data/scraped_data"
 
 captureRadius = 2.5
 

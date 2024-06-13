@@ -4,8 +4,8 @@
 import os
 import pandas as pd
 
-startPath = "./CAT_Infrasound_Data/raw_raypaths"
-endPath = "./CAT_Infrasound_Data/raw_raypaths_SPL"
+startPath = "./Infrasound_Data/raw_raypaths"
+endPath = "./Infrasound_Data/raw_raypaths_SPL"
 
 for filename in os.listdir(startPath):
     #Read datafile and ensure it is float file

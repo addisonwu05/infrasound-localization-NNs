@@ -7,10 +7,10 @@ import json
 dataset = []
 labelset = []
 
-startPath = "./CAT_Infrasound_Data/scraped_data"
+startPath = "./Infrasound_Data/scraped_data"
 
-input_path = "./CAT_Infrasound_Data/model_dataset8/input.json"
-labels_path = "./CAT_Infrasound_Data/model_dataset8/labels.json"
+input_path = "./Infrasound_Data/model_dataset8/input.json"
+labels_path = "./Infrasound_Data/model_dataset8/labels.json"
 
 for subdir in os.listdir(startPath):
 
