@@ -6,7 +6,7 @@ for i in range(0, 17):
     atmo = "example" + str(i) + ".met"
     #Then, set an initial source altitude
     for j in np.arange(2, 20, 0.05):
-        #ROUND J TO 2 DECIMAL PLACES SO I DON'T GET BAD LONG FLOATING POINT ARITHMETIC
+        #Round to 2 decimal places, avoid floating point arithmetic chaos
         j = np.round(j, decimals=2)
         #Then, run the command
         os.system("./infraGA/bin/infraga-2d -prop ./infraGA/examples/profs/" + atmo + " src_alt=" + str(j) + " incl_min=-89 " + " incl_max=89")
