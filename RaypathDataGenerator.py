@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 #First, select the atmospheric profile
-for i in range(6, 11):
+for i in range(0, 17):
     atmo = "example" + str(i) + ".met"
     #Then, set an initial source altitude
     for j in np.arange(2, 20, 0.05):
