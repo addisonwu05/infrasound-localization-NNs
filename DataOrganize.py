@@ -13,7 +13,7 @@ val_labelset = []
 
 startPath = "./Infrasound_Data/scraped_data"
 
-print(len(os.listdir(startPath)))
+numFiles = print(len(os.listdir(startPath)))
 
 train_input_path = "./Infrasound_Data/model_dataset9/train_input.json"
 train_labels_path = "./Infrasound_Data/model_dataset9/train_labels.json"
@@ -25,12 +25,15 @@ atmo_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 random.shuffle(atmo_labels)
 train_atmo_labels, val_atmo_labels = atmo_labels[:14], atmo_labels[14:]
 
+counter = 1
+
 for subdir in os.listdir(startPath):
 
     if subdir == ".DS_Store":
         continue
 
     print(subdir)
+    print("File ", counter, " of ", numFiles )
 
     full_subdir_path = os.path.join(startPath, subdir)
 
