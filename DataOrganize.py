@@ -13,6 +13,10 @@ val_labelset = []
 
 startPath = "./Infrasound_Data/scraped_data"
 
+print(len(os.listdir(startPath)))
+
+exit()
+
 train_input_path = "./Infrasound_Data/model_dataset9/train_input.json"
 train_labels_path = "./Infrasound_Data/model_dataset9/train_labels.json"
 
