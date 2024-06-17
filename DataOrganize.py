@@ -3,14 +3,25 @@ import pandas as pd
 import re
 import glob
 import json
+import random
 
-dataset = []
-labelset = []
+train_dataset = []
+train_labelset = []
+
+val_dataset = []
+val_labelset = []
 
 startPath = "./Infrasound_Data/scraped_data"
 
-input_path = "./Infrasound_Data/model_dataset8/input.json"
-labels_path = "./Infrasound_Data/model_dataset8/labels.json"
+train_input_path = "./Infrasound_Data/model_dataset9/train_input.json"
+train_labels_path = "./Infrasound_Data/model_dataset9/train_labels.json"
+
+val_input_path = "./Infrasound_Data/model_dataset9/val_input.json"
+val_labels_path = "./Infrasound_Data/model_dataset9/val_labels.json"
+
+atmo_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+random.shuffle(atmo_labels)
+train_atmo_labels, val_atmo_labels = atmo_labels[:14], atmo_labels[14:]
 
 for subdir in os.listdir(startPath):
 
@@ -28,8 +39,6 @@ for subdir in os.listdir(startPath):
     micDist = re.search(r'MicDistance_(\d+\.\d+)', subdir)
     dist = micDist.group(1)
 
-    labelset.append([alt, dist])
-
     #Get the atmostats and fft files
     atmoFile = glob.glob(os.path.join(full_subdir_path, "AtmoStats*"))[0]
     dfAtmo = (pd.read_csv(atmoFile, header = None)).values.tolist()[0]
@@ -38,11 +47,35 @@ for subdir in os.listdir(startPath):
     dfFFT = (pd.read_csv(fftFile)).values.tolist()
     dfFFT = [item for sublist in dfFFT for item in sublist]
 
-    dataset.append([dfAtmo, dfFFT])
+    #Inspect atmo file label
+    atmoLabel = re.search(r'Atmo_(\d+)_SrcAlt', subdir).group(1)
 
-#Save labelset and dataset as json files
-with open(input_path, 'w') as f:
-    json.dump(dataset, f)
+    if int(atmoLabel) in train_atmo_labels:
+        train_labelset.append([alt, dist])
+        train_dataset.append([dfAtmo, dfFFT])
 
-with open(labels_path, 'w') as f:
-    json.dump(labelset, f)
+    else:
+        val_labelset.append([alt, dist])
+        val_dataset.append([dfAtmo, dfFFT])
+
+#Shuffle the datasets
+combined_train = list(zip(train_dataset, train_labelset))
+random.shuffle(combined_train)
+train_dataset[:], train_labelset[:] = zip(*combined_train)
+
+combined_val = list(zip(val_dataset, val_labelset))
+random.shuffle(combined_val)
+val_dataset[:], val_labelset[:] = zip(*combined_val)
+
+#Save datasets and labelsets as json files
+with open(train_input_path, 'w') as f:
+    json.dump(train_dataset, f)
+
+with open(train_labels_path, 'w') as f:
+    json.dump(train_labelset, f)
+
+with open(val_input_path, 'w') as f:
+    json.dump(val_dataset, f)
+
+with open(val_labels_path, 'w') as f:
+    json.dump(val_labelset, f)
