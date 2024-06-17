@@ -22,6 +22,7 @@ val_input_path = "./Infrasound_Data/model_dataset9/val_input.json"
 val_labels_path = "./Infrasound_Data/model_dataset9/val_labels.json"
 
 atmo_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+random.seed(42)
 random.shuffle(atmo_labels)
 train_atmo_labels, val_atmo_labels = atmo_labels[:14], atmo_labels[14:]
 
