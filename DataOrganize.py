@@ -13,7 +13,7 @@ val_labelset = []
 
 startPath = "./Infrasound_Data/scraped_data"
 
-numFiles = print(len(os.listdir(startPath)))
+numFiles = len(os.listdir(startPath))
 
 train_input_path = "./Infrasound_Data/model_dataset9/train_input.json"
 train_labels_path = "./Infrasound_Data/model_dataset9/train_labels.json"
@@ -34,6 +34,7 @@ for subdir in os.listdir(startPath):
 
     print(subdir)
     print("File ", counter, " of ", numFiles )
+    counter = counter + 1
 
     full_subdir_path = os.path.join(startPath, subdir)
 
