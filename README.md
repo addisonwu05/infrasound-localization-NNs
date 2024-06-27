@@ -3,7 +3,7 @@ Infrasound propagation simulation data and machine learning code used for infras
 
 infraGA raytracing tool: https://github.com/LANL-Seismoacoustics/infraGA
 
-Run the files in the following order:
+Run the files in the following order (make sure to change directories as appropriate):
 
 1. RaypathDataGenerator.py
 2. AttenutationtoRelativeAmplitude.py
