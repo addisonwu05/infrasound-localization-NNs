@@ -7,7 +7,7 @@ Run the files in the following order (make sure to change directories as appropr
 
 1. RaypathDataGenerator.py
 2. AttenutationtoRelativeAmplitude.py
-3. RaypathDatScraper.py
+3. RaypathDataScraper.py
 4. AtmoStats.py or FFT.py
 5. DataOrganize.py
 
