@@ -8,7 +8,7 @@ Run the files in the following order (make sure to change directories as appropr
 1. RaypathDataGenerator.py
 2. AttenutationtoRelativeAmplitude.py
 3. RaypathDataScraper.py
-4. AtmoStats.py or FFT.py
+4. AtmoStats.py or FFT.py (one after the other)
 5. DataOrganize.py
 
 in which afterwards, you can feed the data into the model of whose weights will be released soon (or in the meantime, train it in models.ipynb as attached)
