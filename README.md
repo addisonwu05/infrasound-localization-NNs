@@ -1,6 +1,6 @@
 # infrasound-localization-NNs
 
-**Towards a Neural Network-Based Approach for Improved Atmospheric Infrasound Localization**
+**Towards a Neural Network-Based Approach for Improved Atmospheric Infrasound Localization – Addison J. Wu, Arnav Joshi, Jean-Pierre Hickey – IEEE Access**
 
 Infrasound propagation simulation data and machine learning code used for infrasonic source localization in refractive settings
 
